@@ -1,7 +1,7 @@
 Pkg jQuery Plugin
 ======================
 
-The **Pkg** jQuery plugin is the first jQuery plugin designed specifically for [Chrome Packaged Applications](http://developer.chrome.com/extensions/apps.html).
+The **Pkg** jQuery plugin is the first jQuery plugin designed specifically for [Chrome Packaged Applications](http://developer.chrome.com/extensions/apps.html).  It is based HEAVILY on the [PubSub library](https://github.com/phiggins42/bloody-jquery-plugins) by [Peter Higgins](http://higginsforpresident.net/projects/).
 
 ## What It Is
 
