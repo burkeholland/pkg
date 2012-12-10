@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Pkg by burkeholland</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Pkg</h1>
+          <h2>The Pkg jQuery plugin for Chrome Packaged Apps</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/burkeholland/pkg/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/burkeholland/pkg/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/burkeholland/pkg" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <h1>Pkg jQuery Plugin</h1>
+
+<p>The <strong>Pkg</strong> jQuery plugin is the first jQuery plugin designed specifically for <a href="http://developer.chrome.com/extensions/apps.html">Chrome Packaged Applications</a>.  It is based HEAVILY on the <a href="https://github.com/phiggins42/bloody-jquery-plugins">PubSub library</a> by <a href="http://higginsforpresident.net/projects/">Peter Higgins</a>.</p>
+
+<h2>What It Is</h2>
+
+<p>Chrome Packaged Applications have a raised security policy that prohibits many of the tools that you are used to using in standard web development.  For instance, you are not allowed to use inline script, do dynamic evaluation of code (i.e. new Function, eval).  Removing core language features like this can make development seem frustrating.  Google has provided an "escape hatch" for you called the <strong>sandbox</strong>. You have a lot more freedom in the sandbox, but you cannot communicate with the Chrome Packaged App API's.  This is where the Pkg Plugin comes in.</p>
+
+<h2>How It Works</h2>
+
+<p>The Pkg plugin allows you to communicate between pages using a combination of PostMessages and PubSub (commonly referred to as the "Observer" pattern).  In short, it allows you to send messages between pages passing parameters (complex objects are fine), and then respond to those parameters.  </p>
+
+<p>So you can setup your packaged app by creating a page where your application will live, and and designating it as a sandboxed page in the manifest.</p>
+
+<pre><code>...
+"sandbox": {
+    pages: [
+        "index.html"
+    ]
+}
+</code></pre>
+
+<p>Then you can load this sandboxed page inside of another page using an iFrame.</p>
+
+<pre><code>&lt;iframe id="iframe" src="index.html" width="100%" height="100%" frameborder="none"&gt;&lt;/iframe&gt;
+</code></pre>
+
+<p>The Pkg plugin will allow you to communicate between these pages so when you need to call chrome extension API's from the sandbox, you simply pass a message up to the containing page which is NOT sandboxed, have it execute the API method for you and return you the result.</p>
+
+<h2>Using The Plugin</h2>
+
+<p>The plugin is a single object and must be initialized on both pages before it can be used.  Call the <strong>init</strong> method and pass in the target that you want to send and receive messages from.  For instance, to communicate with the <strong>iFrame</strong> page, you would do:</p>
+
+<pre><code>var iframe = document.getElementById("iframe");
+$.pkg.init(iframe.contentWindow);
+</code></pre>
+
+<p>Inside the IFrame, you would initialize the plugin and set it's target to <strong>window.top</strong></p>
+
+<pre><code>$.pkg.init(window.top);
+</code></pre>
+
+<p>Now you are ready to send and receive messages.</p>
+
+<h2>Methods</h2>
+
+<h3>Send</h3>
+
+<p>To send a message, simply call the <strong>send</strong> method and pass a string message to respond to along with an array containg in any parameters you want to pass.</p>
+
+<pre><code>$.pkg.send("/some/method", [ arg1, arg2, arg3 ]);
+</code></pre>
+
+<h3>Listen</h3>
+
+<p>To listen and respond to messages, call the <strong>listen</strong> method and specify the function to run when the message is received, along with any parameters the function will be expecting from the <strong>send</strong> method.</p>
+
+<pre><code>$.pkg.listen("/some/method", function(arg1, arg2, arg3) {
+    // you do something trippy here
+});
+</code></pre>
+
+<h3>Ignore</h3>
+
+<p>If you want to stop responding to messages, simply call the <strong>ignore</strong> method at any point</p>
+
+<pre><code>// don't respond to "/some/method" messages anymore
+$.pkg.ignore("/some/method");
+</code></pre>
+
+<h2>Examples</h2>
+
+<p>There is an example application included which has a full implementation of the above.  To use it, open Chrome and navigate to <a>chrome://extensions</a>.  </p>
+
+<p>Click <strong>Developer Mode</strong> at the top right-hand corner if it is not already checked.</p>
+
+<p>Click <strong>Load Unpacked Extension</strong> and browse to the <strong>example</strong> folder.  Select it and hit <strong>open</strong>.</p>
+
+<p>The application will be added to your home screen as a generic icon with the title "Pkg Plugin Sample App".</p>
+
+<p><img src="https://raw.github.com/burkeholland/pkg/master/screenshot.png" alt="Screenshot Bro"></p>
+        </section>
+
+        <footer>
+          Pkg is maintained by <a href="https://github.com/burkeholland">burkeholland</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
