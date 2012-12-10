@@ -1,0 +1,17 @@
+#examples {
+	width: 875px;
+	opacity: 0;
+}
+
+#message {
+	width: 400px;
+}
+
+.combobox {
+	width: 400px;
+}
+
+#listview {
+	padding: 10px;
+	width: 300px;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+		<!-- default kendo style is included. change 'bootsrap' to either metro, blueOpal, default, silver, metroBlack or uniform to get a different theme -->
+		<link rel="stylesheet" href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.common.min.css" />
+		<link rel="stylesheet" href="http://cdn.kendostatic.com/2012.3.1114/styles/kendo.bootstrap.min.css" />
+</head>
+<body>
+
+	<h1>Pkg Plugin Example App</h1>
+	<h2>File System Access</h2>
+	<p>You can't access the file system from the sandbox, but a non-sandboxed page can. This example shows how to initiate a request for a file inside the sandbox, respond to that request outside the sandbox, and then send the selected file back down in.  All with the magic of the Pkg plugin.</p>
+	<button class="k-button">Select An Image</button>
+
+	<!-- include jQuery first, then Kendo UI -->
+	<script src="js/jquery.min.js"></script>
+	<!-- CDN is used here because Kendo is commercial. See www.kendoui.com/download -->
+	<script src="http://cdn.kendostatic.com/2012.3.1114/js/kendo.all.min.js"></script>
+	<!-- inlcude pkg plugin -->
+	<script src="js/pkg.js"></script>
+
+	<script>
+
+		$(function() {
+
+			// This page is sandboxed, so we can do a lot more in terms of JavaScript.  Like use
+			// inline script instead of a separate file.
+
+			// initialize the pkg plugin. window.top is a reference to the page
+			// that contains this page in the iframe (main.html)
+			$.pkg.init(window.top);
+
+			// create a new kendo ui window and assign its reference to the popup variable
+			var popup = $("<div></div>").kendoWindow({
+				modal: true,
+				visible: false
+			}).data("kendoWindow");
+
+			// subscribe to the file loaded event
+			$.pkg.listen("/file/loaded", function(src) {
+				// create a new image
+				var img = new Image();
+				// set the source of the image to the incoming
+				// source of the selected file
+				img.src = src;
+				// when the image is loaded
+				img.onload = function() {
+					// open the modal window and set its contents as the image
+					popup.content(img).center().open();	
+				};
+				
+			});
+
+			// attach an event handler to the button click
+			$("button").on("click", function() {
+				// send the message to the packaged app to open the native 'select file' window
+				$.pkg.send("/select/file");
+			});
+
+		});
+
+	</script>
+
+</body>
+</html>

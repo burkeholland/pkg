@@ -1,0 +1,17 @@
+{
+ "name": "Pkg Plugin Sample App",
+ "description": "An sample application for the $.pkg jQuery plugin",
+ "version": "1.0",
+ "manifest_version": 2,
+ "app": {
+  "background": {
+    "scripts": [ "background.js" ]
+  }
+ },
+ "permissions": [
+   "fileSystem"
+ ],
+  "sandbox": {
+    "pages": [ "index.html" ]
+  }
+}
