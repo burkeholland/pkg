@@ -72,3 +72,4 @@ Click **Load Unpacked Extension** and browse to the **example** folder.  Select 
 
 The application will be added to your home screen as a generic icon with the title "Pkg Plugin Sample App".
 
+![Screenshot Bro](https://raw.github.com/burkeholland/pkg/master/screenshot.png)
