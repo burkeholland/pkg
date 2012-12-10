@@ -73,3 +73,9 @@ Click **Load Unpacked Extension** and browse to the **example** folder.  Select 
 The application will be added to your home screen as a generic icon with the title "Pkg Plugin Sample App".
 
 ![Screenshot Bro](https://raw.github.com/burkeholland/pkg/master/screenshot.png)
+
+## Screencast
+
+Here is a video using the Pkg plugin to build a packaged application and going over the basics of CSP (Content Security Policy) in Chrome Packaged Apps.
+
+<iframe width="640" height="360" src="http://www.youtube.com/embed/TUWHkYKJ9Wk?rel=0" frameborder="0" allowfullscreen></iframe>
