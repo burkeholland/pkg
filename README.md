@@ -74,4 +74,4 @@ The application will be added to your home screen as a generic icon with the tit
 
 ## Screencast
 
-[Here is a video](https://raw.github.com/burkeholland/pkg/master/screenshot.png) using the Pkg plugin to build a packaged application and going over the basics of CSP (Content Security Policy) in Chrome Packaged Apps.
+[Here is a video](http://www.youtube.com/watch?v=TUWHkYKJ9Wk) using the Pkg plugin to build a packaged application and going over the basics of CSP (Content Security Policy) in Chrome Packaged Apps.
