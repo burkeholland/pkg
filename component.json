@@ -2,7 +2,7 @@
   "name":  "pkg",
   "version": "0.5.0",
   "dependencies": {
-      "jquery": ~"1.8.2"
+      "jquery": "~1.8.2"
   },
   "main": "pkg.js"
 }
